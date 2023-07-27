@@ -1,5 +1,5 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import * as React from 'react'
+import * as ReactDOM from 'react-dom/client'
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
@@ -11,5 +11,5 @@ root.render(
 		<Provider store={store}>
 			<App />
 		</Provider>
-	</BrowserRouter>
+	</BrowserRouter>,
 )

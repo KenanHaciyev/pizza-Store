@@ -5,18 +5,18 @@ import PizzaBlock from '../components/PizzaBlock'
 import { useEffect } from 'react'
 import { Skeleton } from '../components/PizzaBlock/Skeleton'
 import Pagination from '../components/Pagination'
-import { SearchContext } from '../App'
-import { useDispatch, useSelector } from 'react-redux'
+import {  useSelector } from 'react-redux'
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
 import { useNavigate } from 'react-router-dom'
 import { initialState } from '../redux/slices/filterSlice'
 import { fetchPizzas } from '../redux/slices/pizzaSlice'
+import {useAppDispatch} from '../redux/store'
 import qs from 'qs'
 
-const Home = () => {
-	const { categoryId, sort, currentPage } = useSelector((state) => state.filter)
-	const { items, status } = useSelector((state) => state.pizza)
-	const dispatch = useDispatch()
+const Home: React.FC = () => {
+	const { categoryId, sort, currentPage, searchValue } = useSelector((state: any) => state.filter)
+	const { items, status } = useSelector((state: any) => state.pizza)
+	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 
 	const isSearch = useRef(false)
@@ -29,8 +29,6 @@ const Home = () => {
 	const onChangePage = (number) => {
 		dispatch(setCurrentPage(number))
 	}
-
-	const { searchValue } = React.useContext(SearchContext)
 
 	const getPizzas = async () => {
 		dispatch(
@@ -106,7 +104,9 @@ const Home = () => {
 				<div className="content__items">
 					{status === 'loading'
 						? [...new Array(6)].map((item, i) => <Skeleton key={i} />)
-						: items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)}
+						: items.map((pizza) => {
+								return <PizzaBlock key={pizza.id} {...pizza} />
+						  })}
 				</div>
 			)}
 			<Pagination currentPage={currentPage} onChangePage={onChangePage} />

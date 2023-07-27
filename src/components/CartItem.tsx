@@ -2,15 +2,21 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice'
 
-const CartItem = ({ title, price, type, size, count, imageUrl, id }) => {
+type CartItemType = {
+	title: string
+	price: number
+	type: string
+	size: number
+	count: number
+	imageUrl: string
+	id: string
+}
+
+const CartItem: React.FC<CartItemType> = ({ title, price, type, size, count, imageUrl, id }) => {
 	const dispatch = useDispatch()
 
 	const onClickAdd = () => {
-		dispatch(
-			addItem({
-				id,
-			}),
-		)
+		dispatch(addItem({ id } as CartItemType))
 	}
 
 	const onClickMinus = () => {
