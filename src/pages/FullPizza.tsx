@@ -1,7 +1,7 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import React from 'react'
+import axios from 'axios'
 
 export const FullPizza: React.FC = () => {
 	const [pizza, setPizza] = React.useState<{
@@ -33,9 +33,9 @@ export const FullPizza: React.FC = () => {
 
 	return (
 		<div className="container">
-			<h2>{pizza.title}</h2>
-			<img src={pizza.imageUrl} alt="pizza" />
-			<div>{pizza.price}</div>
+			<h2 className='pizza-block__header' >{pizza.title}</h2>
+			<img className='pizza-block__item' src={pizza.imageUrl} alt="pizza" />
+			<div className='pizza-block__price' >{pizza.price} ₽</div>
 		</div>
 	)
 }

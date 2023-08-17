@@ -224,6 +224,15 @@ body {
             display: none;
           }
         }
+
+        &--disabled{
+          opacity: .3;
+          cursor: none;
+
+          &:active{
+            transform: none;
+          }
+        }
       }
 
       b {

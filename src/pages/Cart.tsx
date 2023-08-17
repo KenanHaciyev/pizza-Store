@@ -1,9 +1,9 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import CartItem from '../components/CartItem'
 import { clearItems, selectCart } from '../redux/slices/cartSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { CartEmpty } from '../components/CartEmpty'
+import CartItem from '../components/CartItem'
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 const Cart: React.FC = () => {
 	const { items, totalPrice }: any = useSelector(selectCart)
@@ -14,8 +14,6 @@ const Cart: React.FC = () => {
 			dispatch(clearItems())
 		}
 	}
-
-	let location = useLocation()
 
 	if (!totalPrice) {
 		return <CartEmpty />

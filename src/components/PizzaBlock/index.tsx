@@ -1,17 +1,9 @@
 import React, { useState } from 'react'
+import { PizzaBlockPropsType } from '../../types/types'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, CartItem } from '../../redux/slices/cartSlice'
+import { addItem } from '../../redux/slices/cartSlice'
+import { CartItem } from '../../redux/types'
 import { Link } from 'react-router-dom'
-
-type PizzaBlockPropsType = {
-	id: string
-	title: string
-	price: number
-	imageUrl: string
-	types: number[]
-	sizes: number[]
-	count: number
-}
 
 const PizzaBlock: React.FC<PizzaBlockPropsType> = ({
 	id,

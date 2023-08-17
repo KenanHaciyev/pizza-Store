@@ -1,16 +1,16 @@
-import React, { useRef } from 'react'
-import Categories from '../components/Categories'
-import Sort, { list } from '../components/Sort'
-import PizzaBlock from '../components/PizzaBlock'
-import { useEffect } from 'react'
-import { Skeleton } from '../components/PizzaBlock/Skeleton'
-import Pagination from '../components/Pagination'
-import {  useSelector } from 'react-redux'
 import { setCategoryId, setCurrentPage, setFilters } from '../redux/slices/filterSlice'
-import { useNavigate } from 'react-router-dom'
+import { Skeleton } from '../components/PizzaBlock/Skeleton'
 import { initialState } from '../redux/slices/filterSlice'
 import { fetchPizzas } from '../redux/slices/pizzaSlice'
-import {useAppDispatch} from '../redux/store'
+import Categories from '../components/Categories'
+import PizzaBlock from '../components/PizzaBlock'
+import Pagination from '../components/Pagination'
+import Sort, { list } from '../components/Sort'
+import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../redux/store'
+import { useSelector } from 'react-redux'
+import React, { useRef } from 'react'
+import { useEffect } from 'react'
 import qs from 'qs'
 
 const Home: React.FC = () => {
@@ -22,9 +22,9 @@ const Home: React.FC = () => {
 	const isSearch = useRef(false)
 	const isMounted = useRef(false)
 
-	const onChangeCategory = (id) => {
+	const onChangeCategory = React.useCallback((id: number) => {
 		dispatch(setCategoryId(id))
-	}
+	}, [])
 
 	const onChangePage = (number) => {
 		dispatch(setCurrentPage(number))

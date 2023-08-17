@@ -1,16 +1,8 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
 import { addItem, minusItem, removeItem } from '../redux/slices/cartSlice'
-
-type CartItemType = {
-	title: string
-	price: number
-	type: string
-	size: number
-	count: number
-	imageUrl: string
-	id: string
-}
+import { CartItemType } from '../types/types'
+import { useDispatch } from 'react-redux'
+import React from 'react'
+import clsx from 'clsx'
 
 const CartItem: React.FC<CartItemType> = ({ title, price, type, size, count, imageUrl, id }) => {
 	const dispatch = useDispatch()
@@ -21,6 +13,7 @@ const CartItem: React.FC<CartItemType> = ({ title, price, type, size, count, ima
 
 	const onClickMinus = () => {
 		dispatch(minusItem(id))
+		console.log()
 	}
 
 	const onRemoveItem = () => {
@@ -41,9 +34,12 @@ const CartItem: React.FC<CartItemType> = ({ title, price, type, size, count, ima
 				</p>
 			</div>
 			<div className="cart__item-count">
-				<div
+				<button
+					disabled={count === 1}
 					onClick={onClickMinus}
-					className="button button--outline button--circle cart__item-count-minus"
+					className={clsx('button button--outline button--circle cart__item-count-minus', {
+						'cart__item-count-minus--disabled': count === 1,
+					})}
 				>
 					<svg
 						width="10"
@@ -61,9 +57,9 @@ const CartItem: React.FC<CartItemType> = ({ title, price, type, size, count, ima
 							fill="#EB5A1E"
 						></path>
 					</svg>
-				</div>
+				</button>
 				<b>{count}</b>
-				<div
+				<button
 					onClick={onClickAdd}
 					className="button button--outline button--circle cart__item-count-plus"
 				>
@@ -83,7 +79,7 @@ const CartItem: React.FC<CartItemType> = ({ title, price, type, size, count, ima
 							fill="#EB5A1E"
 						></path>
 					</svg>
-				</div>
+				</button>
 			</div>
 			<div className="cart__item-price">
 				<b>{price * count} ₽</b>
