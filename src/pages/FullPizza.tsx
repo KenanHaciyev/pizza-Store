@@ -28,7 +28,7 @@ export const FullPizza: React.FC = () => {
 	}, [])
 
 	if (!pizza) {
-		return <h2>Loading...</h2>
+		return <h2 style={{textAlign: 'center'}} >Loading...</h2>
 	}
 
 	return (
