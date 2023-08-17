@@ -12,7 +12,7 @@ const NotFound = React.lazy(
 
 function App() {
 	return (
-		<Suspense fallback={<h2>Загрузка...</h2>} >
+		<Suspense fallback={<h2 style={{textAlign: 'center'}} >Loading...</h2>} >
 			<Routes>
 				<Route path="/" element={<MainLayout />}>
 					<Route path="" element={<Home />} />
